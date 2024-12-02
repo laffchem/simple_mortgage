@@ -44,6 +44,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     password = models.CharField(max_length=128)  # Explicitly mention the password field
+    plaid_access_token = models.CharField(
+        max_length=255, blank=True, null=True
+    )  # Field to store Plaid access token
 
     objects = CustomUserManager()
 
@@ -59,3 +62,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def check_ssn(self, ssn):
         return bcrypt.checkpw(ssn.encode(), self.ssn.encode())  # type: ignore
+
+
+class UserFile(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    file = models.FileField(upload_to="user_files/")
+    label = models.CharField(max_length=255)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    verified = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.label

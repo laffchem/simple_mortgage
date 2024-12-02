@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser
+from .models import CustomUser, UserFile
 
 
 class RegistrationForm(forms.ModelForm):
@@ -47,3 +47,9 @@ class CustomUserForm(forms.ModelForm):
             "dob": forms.DateInput(attrs={"type": "date"}),
             "ssn": forms.PasswordInput(render_value=True),
         }
+
+
+class FileUploadForm(forms.ModelForm):
+    class Meta:
+        model = UserFile
+        fields = ["file", "label"]

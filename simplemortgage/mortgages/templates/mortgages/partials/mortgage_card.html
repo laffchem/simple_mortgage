@@ -1,0 +1,15 @@
+<div class="col-4 mb-3">
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">{{ mortgage.lender_name }}</h5>
+			<p class="card-text">
+				Interest Rate: {{ mortgage.interest_rate|floatformat:2 }}%<br />
+				Max Amount: ${{ mortgage.max_amount|floatformat:2 }}<br />
+				Loan Type: {{ mortgage.loan_type }}<br />
+				Min Down Payment: ${{ mortgage.min_down_payment|floatformat:2 }}<br />
+				Loan Term: {{ mortgage.loan_term }} years
+			</p>
+			<a href="#" class="btn btn-success">View your Offer!</a>
+		</div>
+	</div>
+</div>

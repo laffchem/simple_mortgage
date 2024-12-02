@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}SimpleMortgage Offers{% endblock title %} 
+{% block content %}
+<div class="px-4 py-5 text-center">
+	<img
+		class="d-block mx-auto mb-4"
+		src="{% static 'assets/simple-mortgage.png' %}"
+		alt=""
+	/>
+	<h1 class="display-5 fw-bold text-body-emphasis">Your Offers!</h1>
+    </div>
+	<div class="container pt-5">
+		<div class="row">
+			{% for mortgage in mortgages %} 
+            {% include 'mortgages/partials/mortgage_card.html' %} 
+            {% endfor %}
+		</div>
+	</div>
+</div>
+	{% endblock %}
